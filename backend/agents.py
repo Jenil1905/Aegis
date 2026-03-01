@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 from pydantic import BaseModel
 from dotenv import load_dotenv
-
+import requests
 load_dotenv()
 
 # We use OpenRouter via Langchain's ChatOpenAI wrapper
@@ -14,7 +14,7 @@ def get_llm():
         model=os.getenv("LLM_MODEL", "meta-llama/llama-3.1-8b-instruct"),
         api_key=os.getenv("OPENROUTER_API_KEY"),
         base_url="https://openrouter.ai/api/v1",
-        max_tokens=2000, # Lowered from 3000 to prevent 402 Insufficient Credit errors on remaining free/low-balance tier
+        max_tokens=1500, # Lowered to accommodate current 1854 token balance
         default_headers={"HTTP-Referer": "http://localhost:5173", "X-Title": "Aegis AI Hackathon MVP"}
     )
 
@@ -109,8 +109,6 @@ class StaticAnalysisAgent(BaseAgent):
             ]
         }
 
-
-import requests
 
 class DynamicWebAgent(BaseAgent):
     def __init__(self):
