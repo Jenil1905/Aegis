@@ -14,7 +14,7 @@ def get_llm():
         model=os.getenv("LLM_MODEL", "meta-llama/llama-3.1-8b-instruct"),
         api_key=os.getenv("OPENROUTER_API_KEY"),
         base_url="https://openrouter.ai/api/v1",
-        max_tokens=1500, # Lowered to accommodate current 1854 token balance
+        max_tokens=400, # Lowered from 800 to accommodate current 468 token balance
         default_headers={"HTTP-Referer": "http://localhost:5173", "X-Title": "Aegis AI Hackathon MVP"}
     )
 
